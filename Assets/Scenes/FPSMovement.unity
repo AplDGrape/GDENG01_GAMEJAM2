@@ -11209,6 +11209,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0f85541c95e1a4db131dd5380c16b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileStartCount: 5
+  startingTile: {fileID: 2729644308076597372, guid: 1ffe311754167a54992df47c6ec35c35, type: 3}
+  obstacles:
+  - {fileID: 6785440962798295803, guid: f1183255354071a438b89fb8c904b858, type: 3}
   groundTile: {fileID: 153982895630948155, guid: cad66650054945549bf7c6b7b7364c08, type: 3}
 --- !u!1 &2108658284
 GameObject:
