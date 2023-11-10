@@ -2,25 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundTile : MonoBehaviour
+namespace Wave
 {
-    GroundSpawner groundSpawner;
-
-    // Start is called before the first frame update
-    void Start()
+    public class GroundTile : MonoBehaviour
     {
-        groundSpawner = GameObject.FindObjectOfType<GroundSpawner>();
-    }
+        GroundSpawner groundSpawner;
 
-    void OnTriggerExit (Collider other)
-    {
-        groundSpawner.SpawnTile();
-        Destroy(gameObject, 3);
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
+            groundSpawner = GameObject.FindObjectOfType<GroundSpawner>();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void OnTriggerExit(Collider other)
+        {
+            groundSpawner.SpawnTile();
+            Destroy(gameObject, 3);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }
