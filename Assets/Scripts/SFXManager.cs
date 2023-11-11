@@ -11,12 +11,19 @@ public class SFXManager : MonoBehaviour {
     [SerializeField]
     private AudioSource levelMusic;
 
+    [SerializeField]
+    private AudioSource retryMusic;
+
     public void PlayMenuMusic() {
         this.menuMusic.Play();
     }
 
     public void PlayLevelMusic() {
         this.levelMusic.Play();
+    }
+
+    public void PlayRetryMusic() {
+        this.retryMusic.Play();
     }
 
     private void Awake() {
