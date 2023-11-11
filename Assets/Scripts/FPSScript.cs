@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 //code creds to All Thing Game Dev - dustinmorman
@@ -8,19 +9,19 @@ public class FPSScript : MonoBehaviour
 {
     //public Camera playerCamera;
     public float walkSpeed = 6f;
-    public float runSpeed = 12f;
+    //public float runSpeed = 12f;
     public float jumpPower = 7f;
     public float gravity = 10f;
 
     //public float lookSpeed = 2f;
     //public float lookXLimit = 45f;
+    public Rigidbody rb;
 
-
+    Vector3 forward;
     Vector3 moveDirection = Vector3.zero;
     //float rotationX = 0;
 
     public bool canMove = true;
-
 
     CharacterController characterController;
 
@@ -31,17 +32,26 @@ public class FPSScript : MonoBehaviour
         Cursor.visible = false;
     }
 
+    void FixedUpdate()
+    {
+        forward = transform.forward * walkSpeed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + forward);
+    }
+
     void Update()
     {
 
         #region Handles Movement
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
         // Press Left Shift to run
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
-        float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
+        //bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        //float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
+        float curSpeedX = canMove ? (walkSpeed) : 0; //* Input.GetAxis("Vertical") : 0;
+        //float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
+        float curSpeedY = canMove ? (walkSpeed) * Input.GetAxis("Horizontal") : 0;
+        
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
