@@ -14,6 +14,8 @@ namespace Wave
         [SerializeField] GameObject groundTile;
         Vector3 nextSpawnPoint;
 
+        //private List<GameObject> Obstacles = new List<GameObject>();
+
         public void SpawnTile(/*bool DelayObstacles*/)
         {
             GameObject temp = Instantiate(groundTile, nextSpawnPoint, Quaternion.identity);
@@ -35,7 +37,7 @@ namespace Wave
             #region Handles amount of platform to spawn
             for (int i = 0; i < tileStartCount; i++)
             {
-                /*if (i < 1) 
+                /*if (i < 2) 
                     SpawnTile(false);
                 else
                     SpawnTile(true);*/

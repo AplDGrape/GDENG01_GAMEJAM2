@@ -27,6 +27,8 @@ public class FPSScript : MonoBehaviour
     bool alive = true;
     public bool canMove = true;
 
+    //public RetryScene retryscene;
+
     CharacterController characterController;
 
     void Start()
@@ -53,6 +55,7 @@ public class FPSScript : MonoBehaviour
         if (transform.position.y < -10)
         {
             Death();
+            RetryScene.gameOver = true;
         }
 
         #region Handles Movement
@@ -106,7 +109,8 @@ public class FPSScript : MonoBehaviour
     public void Death()
     {
         alive = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //retryscene.EndScreen();
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     IEnumerator SpeedIncrease()

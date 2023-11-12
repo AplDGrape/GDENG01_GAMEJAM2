@@ -12,6 +12,6 @@ public class Distance : MonoBehaviour
     void Update()
     {
         //Debug.Log(player.position.z);
-        distanceText.text = player.position.z.ToString("0");
+        distanceText.text = player.position.z.ToString("0" + "m");
     }
 }
