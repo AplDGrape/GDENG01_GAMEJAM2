@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //code creds to All Thing Game Dev - dustinmorman
 [RequireComponent(typeof(CharacterController))]
@@ -17,16 +18,21 @@ public class FPSScript : MonoBehaviour
     //public float lookXLimit = 45f;
     public Rigidbody rb;
 
+    private float MaxSpeed = 1f;
+
     Vector3 forward;
     Vector3 moveDirection = Vector3.zero;
     //float rotationX = 0;
 
+    bool alive = true;
     public bool canMove = true;
 
     CharacterController characterController;
 
     void Start()
     {
+        StartCoroutine(SpeedIncrease());
+
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -34,12 +40,18 @@ public class FPSScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!alive) return;
+
         forward = transform.forward * walkSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + forward);
     }
 
     void Update()
     {
+        if (transform.position.y < -10)
+        {
+            Death();
+        }
 
         #region Handles Movement
         forward = transform.TransformDirection(Vector3.forward);
@@ -53,6 +65,7 @@ public class FPSScript : MonoBehaviour
         float curSpeedY = canMove ? (walkSpeed) * Input.GetAxis("Horizontal") : 0;
         
         float movementDirectionY = moveDirection.y;
+
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
         #endregion
@@ -86,5 +99,21 @@ public class FPSScript : MonoBehaviour
         }
 
         #endregion
+    }
+
+    public void Death()
+    {
+        alive = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    IEnumerator SpeedIncrease()
+    {
+        while (MaxSpeed < 50)
+        {
+            yield return new WaitForSeconds(10);
+            MaxSpeed += 1f;
+            walkSpeed += 15f;
+        }
     }
 }
