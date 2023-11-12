@@ -5,6 +5,7 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     FPSScript playerMovement;
+    //RetryScene retryscene;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class Obstacle : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             playerMovement.Death();
+            RetryScene.gameOver = true;
         }
     }
 
