@@ -31,17 +31,19 @@ public class FPSScript : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(Intro());
+
         StartCoroutine(SpeedIncrease());
 
         characterController = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     void FixedUpdate()
     {
         if (!alive) return;
-
+        
         forward = transform.forward * walkSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + forward);
     }
@@ -115,5 +117,12 @@ public class FPSScript : MonoBehaviour
             MaxSpeed += 1f;
             walkSpeed += 15f;
         }
+    }
+
+    IEnumerator Intro()
+    {
+        walkSpeed = 0;
+        yield return new WaitForSeconds(1);
+        walkSpeed = 12;
     }
 }
