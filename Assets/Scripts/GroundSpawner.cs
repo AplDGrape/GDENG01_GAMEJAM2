@@ -9,7 +9,7 @@ namespace Wave
     {
         GroundTile groundtile;
 
-        [SerializeField] private int tileStartCount = 5;
+        [SerializeField] private int tileStartCount = 10;
 
         [SerializeField] GameObject groundTile;
         Vector3 nextSpawnPoint;
