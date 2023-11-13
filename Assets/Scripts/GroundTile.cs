@@ -24,7 +24,7 @@ namespace Wave
         void OnTriggerExit(Collider other)
         {
             groundSpawner.SpawnTile(/*true*/);
-            Destroy(gameObject, 2);
+            Destroy(gameObject, 1);
         }
 
         public void SpawnObstacle()
