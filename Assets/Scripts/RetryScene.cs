@@ -38,6 +38,6 @@ public class RetryScene : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1.0f;
-        //SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Menu");
     }
 }
