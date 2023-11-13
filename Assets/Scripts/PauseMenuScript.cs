@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class PauseMenuScript : MonoBehaviour
 {
     public static bool PauseGame = false;
 
     public GameObject pauseMenuUI;
+
+    public AudioMixer audioMixer;
+
+    //OptionsMenu options;
 
     // Update is called once per frame
     void Update()
@@ -25,13 +30,17 @@ public class PauseMenuScript : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1.0f;
+
+        audioMixer.SetFloat("Volume", -10);
+
         PauseGame = false;
     }
 
     public void LoadMenu()
     {
         Time.timeScale = 1.0f;
-        //SceneManager.LoadScene("Menu");
+        audioMixer.SetFloat("Volume", -10);
+        SceneManager.LoadScene("Menu");
     }
 
     public void QuitGame()
@@ -44,6 +53,9 @@ public class PauseMenuScript : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+
+        audioMixer.SetFloat("Volume", -60);
+
         PauseGame = true;
     }
 }
